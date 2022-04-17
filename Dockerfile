@@ -5,6 +5,7 @@ FROM chef AS planner
 COPY ./backend ./backend
 COPY ./Cargo.toml ./Cargo.toml
 COPY ./Cargo.lock ./Cargo.lock
+RUN perl -0777 -i -e 's/members = \[[^\]]+\]/members = ["backend"]/igs' Cargo.toml
 RUN cargo chef prepare --recipe-path recipe.json
 
 FROM chef AS builder
@@ -15,6 +16,7 @@ RUN cargo chef cook --release --recipe-path recipe.json
 COPY ./backend ./backend
 COPY ./Cargo.toml ./Cargo.toml
 COPY ./Cargo.lock ./Cargo.lock
+RUN perl -0777 -i -e 's/members = \[[^\]]+\]/members = ["backend"]/igs' Cargo.toml
 RUN cargo build --release --bin backend
 
 # We do not need the Rust toolchain to run the binary!
