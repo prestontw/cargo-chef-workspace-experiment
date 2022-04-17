@@ -5,7 +5,12 @@ Trying to see if directory structures with different folders besides `src` work 
 docker build -t workspace-experiment .
 ```
 
-### Will this work?
+### to run on m1
+```
+docker run --platform=linux/amd64 -it --rm workspace-experiment bash
+```
+
+## Will this work?
 No! This will raise the error message:
 ```
  => ERROR [builder 2/6] RUN cargo chef cook --release --recipe-path recipe.json                                                                                                                        1.2s
