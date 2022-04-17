@@ -14,8 +14,6 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 # Build application
 COPY ./backend ./backend
-COPY --from=planner /app/Cargo.toml ./Cargo.toml
-COPY ./Cargo.lock ./Cargo.lock
 RUN cargo build --release --bin backend
 
 # We do not need the Rust toolchain to run the binary!
