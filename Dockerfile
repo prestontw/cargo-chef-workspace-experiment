@@ -7,7 +7,7 @@ COPY ./backend ./backend
 COPY ./Cargo.toml ./Cargo.toml
 COPY ./Cargo.lock ./Cargo.lock
 # RUN perl -0777 -i -pe 's/members = \[[^\]]+\]/members = ["backend"]/igs' Cargo.toml
-RUN cargo chef prepare --recipe-path recipe.json
+RUN cargo chef prepare --recipe-path recipe.json --member backend
 
 FROM chef AS builder
 COPY --from=planner /app/recipe.json recipe.json
