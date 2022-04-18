@@ -5,16 +5,6 @@ Trying to see if directory structures with different folders besides `src` work 
 docker build -t workspace-experiment .
 ```
 
-### To build on m1
-```
-docker buildx build --platform=linux/amd64 -t workspace-experiment .
-```
-
-### To run on m1
-```
-docker run --platform=linux/amd64 -it --rm workspace-experiment
-```
-
 ## Will this work?
 No! This will raise the error message:
 ```
