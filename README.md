@@ -6,6 +6,10 @@ docker build -t workspace-experiment .
 ```
 
 ## Will this work?
+Yes, because I'm using a custom version of cargo chef that allows specifying `--member`. But before:
+
+---------
+
 No! This will raise the error message:
 ```
  => ERROR [builder 2/4] RUN cargo chef cook --release --recipe-path recipe.json                                                                                                                        1.1s
