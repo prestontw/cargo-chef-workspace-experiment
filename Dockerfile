@@ -4,6 +4,8 @@ WORKDIR app
 
 FROM chef AS planner
 COPY ./backend ./backend
+# as long as we copy all the necessary folders over, it's fine if we remove dependencies as members
+COPY ./util ./util
 COPY ./Cargo.toml ./Cargo.toml
 COPY ./Cargo.lock ./Cargo.lock
 # RUN perl -0777 -i -pe 's/members = \[[^\]]+\]/members = ["backend"]/igs' Cargo.toml
@@ -15,6 +17,7 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 # Build application
 COPY ./backend ./backend
+COPY ./util ./util
 RUN cargo build --release --bin backend
 
 # We do not need the Rust toolchain to run the binary!
