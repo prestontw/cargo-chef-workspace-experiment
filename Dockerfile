@@ -1,5 +1,5 @@
 FROM rust:1.59.0 AS chef
-RUN cargo install --git https://github.com/prestontw/cargo-chef.git --branch ptw/add-prepare-member-flag --rev 2b89e7e9edae486b70fa92e6ab04eaed4eba9a9a
+RUN cargo install cargo-chef --version 0.1.39
 WORKDIR app
 
 FROM chef AS planner
